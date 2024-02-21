@@ -1,9 +1,8 @@
-type MyExclude<T, U> = T extends U ? never : T
+type MyExclude<T, U> = T extends U ? never : T;
 
-// 用到了份分布式条件  
+// 用到了份分布式条件
 // 1. 对于union类型的extends 是分开映射循环约束的
 // 2. 对于union类型 是没有never的 ，所以起到了筛除的能力
-
 
 // 大致思路 🤔
 // 这道题给我们两个联合类型T和U（可以把联合类型看成是一个类型集合），求存在T中而不存在于U中的类型，从集合的角度来讲就是T - U，求差集。要求差集，先解决两个问题：1、如何判断T中的某个类型是否存在于U中。2、如何去除T中存在于U中的类型。
@@ -31,7 +30,7 @@ type MyExclude<T, U> = T extends U ? never : T
 // 答案 📄
 // typescript复制代码type MyExclude<T, U> = T extends U ? never : T
 
-// 当T中的类型存在于U中时，就返回never是为了剔除掉这个类型。举个例子再结合上面所讲的条件类型，应该会比较清晰了。
+// 当T中的类型存在于U中时，就返回dnever是为了剔除掉这个类型。举个例子再结合上面所讲的条件类型，应该会比较清晰了。
 // typescript复制代码type excludeNever = string | never | number  // string | number
 
 // 可以看到最终生成的联合类型是没有never的。
@@ -43,4 +42,15 @@ type MyExclude<T, U> = T extends U ? never : T
 // never | 'b' | 'c' => 'b' | 'c'
 
 // 这样不就求出了T-U嘛。
+
+interface AOb {
+  a: number;
+}
+
+type PickA = Exclude<'a' | 'b', 'a'>;
+
+
+const adddd:PickA ='b'
+
+
 
