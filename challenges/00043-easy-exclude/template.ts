@@ -1,6 +1,6 @@
 type MyExclude<T, U> = T extends U ? never : T;
 
-// 用到了份分布式条件
+// 用到了分布式条件
 // 1. 对于union类型的extends 是分开映射循环约束的
 // 2. 对于union类型 是没有never的 ，所以起到了筛除的能力
 
